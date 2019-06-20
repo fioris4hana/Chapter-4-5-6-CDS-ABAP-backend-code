@@ -1,0 +1,7 @@
+@EndUserText.label: 'Purchase Document Overall Price' 
+@MappingRole: true 
+define role Z_I_Purchdocoverallprice { 
+    grant select 
+     on Z_I_PurchDocOverallPrice 
+     inherit Z_I_PurchaseDocument;
+}

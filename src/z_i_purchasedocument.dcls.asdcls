@@ -1,0 +1,13 @@
+@EndUserText.label: 'Role for Z_I_PurchaseDocument' 
+@MappingRole: true 
+define role Z_I_PurchaseDocument { 
+    grant select 
+        on Z_I_PurchaseDocument 
+        where 
+       ( PurchasingOrganization ) =
+        aspect pfcg_auth( 
+            ZPURCHORGA, // Authorization object 
+            ZPURCHORGA , // Matched auth. object field
+            ACTVT = '03' // Fixed auth. object field
+             ) ;                          
+}

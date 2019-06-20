@@ -1,0 +1,17 @@
+CLASS ztcl_z_c_purchasedocumentlrp DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS ztcl_z_c_purchasedocumentlrp IMPLEMENTATION.
+
+
+
+ENDCLASS.

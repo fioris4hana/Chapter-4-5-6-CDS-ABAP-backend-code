@@ -1,0 +1,253 @@
+@Metadata.layer: #CORE
+@UI.selectionPresentationVariant: [
+ //For KPIs
+    {
+        qualifier:                      'KPIDocumentsByOverallItemPrice',
+        presentationVariantQualifier:   'KPIDocumentsByOverallItemPrice',
+        selectionVariantQualifier:      'KPIDocumentsByOverallItemPrice'
+    },
+    {
+        qualifier:                      'KPIDocumentsByQuantity',
+        presentationVariantQualifier:   'KPIDocumentsByQuantity',
+        selectionVariantQualifier:      'KPIDocumentsByQuantity'
+    },
+ //For default chart and Table
+    {
+        qualifier:                      'Default',
+        presentationVariantQualifier:   'Default',
+        selectionVariantQualifier:      'Default'
+    },
+ //For Visual Filters
+    {
+        qualifier:                      'FilterByItemPrice',
+        presentationVariantQualifier:   'FilterByItemPrice',
+        selectionVariantQualifier:      'FilterByItemPrice'
+    },
+    {
+        qualifier:                      'FilterByPriority',
+        presentationVariantQualifier:   'FilterByPriority',
+        selectionVariantQualifier:      'FilterByPriority'
+    },
+    {
+        qualifier:                      'FilterByVendor',
+        presentationVariantQualifier:   'FilterByVendor',
+        selectionVariantQualifier:      'FilterByVendor'
+    },
+    {
+        qualifier:                      'FilterByVendorType',
+        presentationVariantQualifier:   'FilterByVendorType',
+        selectionVariantQualifier:      'FilterByVendorType'
+    },
+    {
+        qualifier:                      'FilterByPurchasingOrganization',
+        presentationVariantQualifier:   'FilterByPurchasingOrganization',
+        selectionVariantQualifier:      'FilterByPurchasingOrganization'
+    }
+]
+
+@UI.selectionVariant: [
+ //For KPIs
+    {
+        qualifier:      'KPIDocumentsByOverallItemPrice',
+        text:           'KPI Documents By Overall Price'
+    },
+    {
+        qualifier:      'KPIDocumentsByQuantity',
+        text:           'KPI Documents By Quantity'
+    },
+ //For default chart and Table
+    {
+        qualifier:      'Default',
+        text:           'Default'
+    },
+ //For Visual Filters
+    {
+        qualifier:          'FilterByItemPrice',
+        text:               'Documents By Item Price'
+    },
+    {
+        qualifier:          'FilterByPriority',
+        text:               'Documents By Priority'
+    },
+    {
+        qualifier:          'FilterByVendor',
+        text:               'Documents By Vendor'
+    },
+    {
+        qualifier:          'FilterByVendorType',
+        text:               'Documents By VendorType'
+    },
+    {
+        qualifier:          'FilterByPurchasingOrganization',
+        text:               'Documents By Purchase Org'
+    }
+]
+
+@UI.presentationVariant: [
+ //For KPIs
+    {
+        qualifier:          'KPIDocumentsByOverallItemPrice',
+        text:               'Number of Documents per OverallItemPrice',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartDocumentsByOverallItemPrice'},
+                             { type: #AS_DATAPOINT, qualifier: 'OverallItemPrice'}]
+    },
+    {
+        qualifier:          'KPIDocumentsByQuantity',
+        text:               'Number of Documents per Quantity',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartDocumentsByQuantity'},
+                             { type: #AS_DATAPOINT, qualifier: 'Quantity'}]
+    },
+//For default chart and Table
+    {
+    qualifier:              'Default',
+    sortOrder:      [{ by: 'PurchaseDocument', direction: #ASC }],
+    groupBy:        [ 'PurchaseDocument','PurchaseDocumentItem'],
+    visualizations:         [{ type: #AS_CHART, qualifier: 'ChartDefault'},
+                             { type: #AS_LINEITEM, qualifier: 'Default' }]
+    },
+//For Visual Filters
+    {
+        qualifier:          'FilterByItemPrice',
+        text:               'Documents By Item Price',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartDocumentsByItemPrice'},
+                             { type: #AS_DATAPOINT, qualifier: 'Price'}]
+    },
+    {
+        qualifier:          'FilterByPriority',
+        text:               'Documents By Priority',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartDocumentsByPriority'},
+                             { type: #AS_DATAPOINT, qualifier: 'TotalNumberofDocuments'}]
+    },
+    {
+        qualifier:          'FilterByVendor',
+        text:               'Documents By Vendor',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartVendorsPerItem'}]
+    },
+    {
+        qualifier:          'FilterByVendorType',
+        text:               'Documents By VendorType',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartVendorTypesPerItem'}]
+    },
+    {
+        qualifier:          'FilterByPurchasingOrganization',
+        text:               'Documents By Purchase Org',
+        visualizations:     [{ type: #AS_CHART, qualifier: 'ChartPurchaseOrg'}]
+    }
+
+]
+
+
+@UI.chart: [
+ //For KPIs
+    {
+        qualifier:              'ChartDocumentsByOverallItemPrice',
+        chartType:              #COLUMN,
+        dimensions:             ['PurchaseDocument'],
+        measures:               [ 'OverallItemPrice' ],
+        dimensionAttributes:    [{ dimension: 'PurchaseDocument', role: #CATEGORY}],
+        measureAttributes:      [{ measure: 'OverallItemPrice', role: #AXIS_1}]
+    },
+    {
+        qualifier:              'ChartDocumentsByQuantity',
+        chartType:              #DONUT,
+        dimensions:             [ 'PurchaseDocument'],
+        measures:               [ 'Quantity' ],
+        dimensionAttributes:    [{ dimension: 'PurchaseDocument', role: #CATEGORY}],
+        measureAttributes:      [{ measure: 'Quantity', role: #AXIS_1}]
+    },
+//For default chart and Table
+    {
+        qualifier:              'ChartDefault',
+        title:                  'Costs by PurchaseDoc / Items',
+        description:            'Costs by PurchaseDoc / Items',
+        chartType:              #COLUMN,
+        dimensions:             [ 'PurchaseDocument','PurchaseDocumentItem','VendorType','Vendor' ],
+        measures:               [ 'Quantity'],
+        dimensionAttributes:    [{ dimension: 'PurchaseDocument', role: #SERIES},
+                                 { dimension: 'PurchaseDocumentItem', role: #CATEGORY},
+                                 { dimension: 'VendorType', role: #CATEGORY},
+                                 { dimension: 'Vendor', role: #CATEGORY}],
+        measureAttributes:      [{ measure: 'Quantity', role: #AXIS_1}]
+    },
+ //For Visual Filters
+    {
+        qualifier:              'ChartDocumentsByItemPrice',
+        chartType:              #LINE,
+        dimensions:             [ 'PurchaseDocument'],
+        measures:               [ 'OverallItemPrice' ],
+        dimensionAttributes:    [{ dimension: 'PurchaseDocument', role: #CATEGORY}],
+        measureAttributes:      [{ measure: 'OverallItemPrice', role: #AXIS_1}]
+    },
+    {
+        qualifier:              'ChartDocumentsByPriority',
+        chartType:              #BAR,
+        dimensions:             [ 'Priority'],
+        measures:               [ 'NumberOfDocuments' ],
+        dimensionAttributes:    [{ dimension: 'Priority', role: #CATEGORY}],
+        measureAttributes:      [{ measure: 'NumberOfDocuments', role: #AXIS_1}]
+    },
+    {
+        qualifier:              'ChartVendorsPerItem',
+        chartType:              #DONUT,
+        dimensions:             ['Vendor'],
+        dimensionAttributes:    [{ dimension: 'Vendor', role: #CATEGORY }],
+        measures:               ['NumberOfDocuments'],
+        measureAttributes:      [{ measure: 'NumberOfDocuments', role: #AXIS_1 }]
+    },
+     {
+        qualifier:              'ChartVendorTypesPerItem',
+        chartType:              #BAR,
+        dimensions:             ['VendorType'],
+        dimensionAttributes:    [{ dimension: 'VendorType', role: #CATEGORY }],
+        measures:               ['NumberOfDocuments'],
+        measureAttributes:      [{ measure: 'NumberOfDocuments', role: #AXIS_1 }]
+    },
+    {
+        qualifier:              'ChartPurchaseOrg',
+        chartType:              #DONUT,
+        dimensions:             ['PurchasingOrganization'],
+        dimensionAttributes:    [{ dimension: 'PurchasingOrganization', role: #CATEGORY }],
+        measures:               ['NumberOfDocuments'],
+        measureAttributes:      [{ measure: 'NumberOfDocuments', role: #AXIS_1 }]
+    }
+]
+annotate view Z_C_PurchaseDocumentALP with
+{
+  @UI: { lineItem: [{ qualifier: 'Default', position: 10}], selectionField: [{ position: 10}], identification: [{ position: 10}]}
+  PurchaseDocument;
+  @UI: { lineItem: [{ qualifier: 'Default', position: 20}], identification: [{ position: 20}]}
+  PurchaseDocumentItem;
+  @UI: { selectionField: [{ position: 20}], lineItem: [{ qualifier: 'Default', position: 30}]}
+  Priority;
+  @UI: { lineItem: [{ qualifier: 'Default', position: 40}]}
+  @UI.dataPoint.title: 'Status'
+  @Consumption.filter: { selectionType : #SINGLE, multipleSelections : true}
+  Status;
+  @UI: { selectionField: [{ position: 30}], lineItem: [{ qualifier: 'Default', position: 50}]}
+  Vendor;
+  @UI: { selectionField: [{ position: 40}]}
+  VendorType;
+  @UI: { selectionField: [{ position: 50}]}
+  PurchasingOrganization;
+  @UI: { lineItem: [{ qualifier: 'Default', position: 60}]}
+  @UI.dataPoint.title: 'Quantity'
+  Quantity;
+  @UI: { lineItem: [{ qualifier: 'Default', position: 70}], identification: [{ position: 40}]}
+  Price;
+  @UI: { lineItem: [{ qualifier: 'Default', position: 80}], identification: [{ position: 50}]}
+ //Data Point with Criticality Calculation for the KPIs to highlight values based on the threshold limiit
+  @UI: {
+        dataPoint: {
+            title: 'Overall Item Price',
+            valueFormat.numberOfFractionalDigits: 2,
+            minimumValue: 0,
+            maximumValue: 100000,
+            criticalityCalculation: {
+                improvementDirection: #MINIMIZE,
+                toleranceRangeHighValue: 40000,
+                deviationRangeHighValue: 100000
+            }
+          }
+        }
+  OverallItemPrice;
+}

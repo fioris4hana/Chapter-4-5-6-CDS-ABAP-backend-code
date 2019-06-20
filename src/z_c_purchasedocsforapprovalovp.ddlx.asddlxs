@@ -1,0 +1,52 @@
+@Metadata.layer: #CORE
+annotate view Z_C_PurchaseDocsforApprovalOVP with
+{
+  @UI.lineItem: [{
+      position: 10,
+      importance: #HIGH,
+      label: 'Document',
+      type: #FOR_INTENT_BASED_NAVIGATION, 
+      semanticObjectAction: 'manage'
+    }]
+  PurchaseDocument;
+
+
+  @UI.lineItem: [{
+    position: 20,
+    importance: #HIGH,
+    label: 'Description'
+  }]
+  Description;
+
+
+  @UI.lineItem: [{
+    position: 30,
+    importance: #HIGH,
+    label: 'Total Price'
+  }]
+  PriorityText;
+
+
+  @UI.lineItem: [{
+     position: 40,
+     importance: #HIGH,
+     label: 'Quantity'
+      }]
+  crea_uname;
+
+  @UI.lineItem: [{
+    position: 50,
+    importance: #HIGH,
+    label: 'Total Price'
+  }]
+  OverallPrice;
+
+
+  @UI.lineItem: [{
+     position: 60,
+     importance: #HIGH,
+     label: 'Quantity'
+      }]
+  Approval;
+
+}

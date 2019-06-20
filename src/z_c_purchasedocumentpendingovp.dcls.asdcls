@@ -1,0 +1,14 @@
+@EndUserText.label: 'ACL Pending Purchase Documents Item List' 
+@MappingRole: true 
+define role Z_C_Purchasedocumentpendingovp { 
+    grant 
+        select 
+            on 
+                Z_C_PurchaseDocumentPendingOVP 
+        where 
+       ( PurchasingOrganization ) =
+        aspect pfcg_auth( 
+            ZPURCHORGA, 
+            ZPURCHORGA , 
+            ACTVT = '03' ) ;                          
+}

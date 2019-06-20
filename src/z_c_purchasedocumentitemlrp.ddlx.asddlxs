@@ -1,0 +1,63 @@
+@Metadata.layer: #CORE
+
+@UI: {
+    headerInfo: {
+        description: {
+            value: 'PurchaseDocumentItem',
+            type: #STANDARD
+        },
+        title: {
+            value: 'PurchaseDocumentItem',
+            type: #STANDARD
+        },
+        typeName: 'Purchase Document Item',
+        typeNamePlural: 'Purchase Document Items',
+        imageUrl: 'PurchaseDocumentItemImageURL'
+    }
+}
+
+annotate view Z_C_PurchaseDocumentItemLrp with
+{
+
+  @UI.lineItem: [{ importance: #HIGH, position: 10 }]
+  PurchaseDocumentItemImageURL;
+
+  @UI.lineItem: [{ importance: #HIGH, position: 20 }]
+  PurchaseDocument;
+
+  @UI.lineItem: [{ importance: #HIGH, position: 30 }]
+  PurchaseDocumentItem;
+
+  @UI.lineItem: [{ importance: #HIGH, position: 40 }]
+  Price;
+
+
+  @UI.lineItem: [{ importance: #HIGH, position: 50 }]
+  Quantity;
+
+  @UI.lineItem: [{ importance: #HIGH, position: 60 }]
+  OverallItemPrice;
+
+  @UI.lineItem: [{ importance: #MEDIUM, position: 70 }]
+  Vendor;
+
+  @UI.lineItem: [{ importance: #MEDIUM, position: 80 }]
+  VendorType;
+
+
+  @UI.dataPoint: {
+    visualization: #RATING,
+    targetValue: 5,
+    title: 'Vendor Rating'
+  }
+  @UI.lineItem: [{ importance: #MEDIUM, position: 90, type: #AS_DATAPOINT }]
+  VendorRating;
+
+  @UI.hidden: true
+  Currency;
+
+  @UI.hidden: true
+  QuantityUnit;
+
+
+}

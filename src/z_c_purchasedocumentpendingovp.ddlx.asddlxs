@@ -1,0 +1,63 @@
+@Metadata.layer: #CORE
+annotate view Z_C_PurchaseDocumentPendingOVP with
+{
+  @UI.lineItem: [{
+    position: 10,
+    importance: #HIGH,
+    label: 'Document'
+  }]
+  
+  PurchaseDocumentDescription;
+
+  @UI.lineItem: [{
+    position: 20,
+    importance: #HIGH,
+    label: 'Item Name'
+  }]
+  Description;
+
+  @UI.lineItem: [{
+     position: 30,
+     importance: #HIGH,
+     label: 'Quantity'
+      }]
+  Quantity;
+  
+  @UI.lineItem: [{
+    position: 40,
+    importance: #HIGH,
+    label: 'Total Price'
+  }]
+  OverallItemPrice;
+  
+  @UI.lineItem: [{
+    position: 50,
+    importance: #HIGH,
+    label: 'Created By'
+  }]
+  crea_uname;
+  
+  @UI.lineItem: [{
+    position: 60,
+    importance: #HIGH,
+    label: 'Status'
+  }]
+  StatusText;
+  
+  @UI.lineItem: [{
+    position: 70,
+    importance: #HIGH,
+    label: 'Document',
+    criticality: 'Status',
+    criticalityRepresentation: #WITHOUT_ICON
+  }]
+  PriorityText;
+
+  @UI.lineItem: [{
+    position: 80,
+    importance: #HIGH,
+    label: 'Currency'
+  }]
+  Currency;
+
+}

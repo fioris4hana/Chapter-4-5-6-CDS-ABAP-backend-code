@@ -1,0 +1,46 @@
+@Metadata.layer: #CORE
+annotate view Z_C_PurchaseDocBudgetOVP with
+{
+  @EndUserText.label: 'Purchasing Document'
+  @UI: {
+     selectionField: [{position: 10}],
+      lineItem: [{
+      position: 10,
+      type: #FOR_INTENT_BASED_NAVIGATION, 
+      semanticObjectAction: 'manage'}]
+  }
+  PurchaseDocument;
+  @UI: {
+  lineItem:[{
+   type: #AS_DATAPOINT,
+   importance: #HIGH,
+   position: 20
+  }],
+  dataPoint: {
+   title: 'Created On'
+  }
+  }
+
+  crea_date_time;
+  @UI.lineItem: [{position: 20}]
+  PurchasingOrganization;
+  @UI: {
+  lineItem: [{
+  type: #AS_DATAPOINT,
+  importance: #HIGH,
+  position: 10
+  }],
+  dataPoint: {
+  title: 'Overall Price',
+  valueFormat.numberOfFractionalDigits: 2,
+  minimumValue: 0,
+  maximumValue: 100,
+  criticalityCalculation: {
+      improvementDirection: #MINIMIZE,
+      toleranceRangeHighValue: 80,
+      deviationRangeHighValue: 100      
+  }
+  }
+  }
+  BudgetUtilization;
+}

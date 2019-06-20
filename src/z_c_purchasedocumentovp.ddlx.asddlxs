@@ -1,0 +1,51 @@
+@Metadata.layer: #CORE
+
+@UI.chart: [
+  {
+    qualifier:  'ByPurchaseDocumentPriority',
+    title: 'Purchasing documents by Priority',
+    chartType:  #DONUT,
+    dimensions: [  'Priority', 'PriorityText' ] ,
+    measures:   [ 'TotalNumberofDocuments'   ],
+    dimensionAttributes: [
+      {dimension: 'Priority', role: #CATEGORY},
+      {dimension: 'PriorityText', role: #CATEGORY}
+
+    ],
+    measureAttributes: [
+      {measure: 'TotalNumberofDocuments', role: #AXIS_1, asDataPoint: true}
+    ]
+  },
+  {
+    qualifier:  'ByPurchaseDocumentStatus',
+    title: 'Purchasing documents by Status',
+    chartType:  #DONUT,
+    dimensions: [  'Status', 'StatusText' ] ,
+    measures:   [ 'TotalNumberofDocuments'   ],
+    dimensionAttributes: [
+      {dimension: 'Status', role: #CATEGORY},
+      {dimension: 'StatusText', role: #CATEGORY}
+
+    ],
+    measureAttributes: [
+      {measure: 'TotalNumberofDocuments', role: #AXIS_1, asDataPoint: true}
+    ]
+  }
+  ]
+
+annotate view Z_C_PurchaseDocumentOVP
+    with 
+{
+  @UI.identification: [{
+    type: #FOR_INTENT_BASED_NAVIGATION,
+    semanticObjectAction: 'manage',
+    label: 'Display Purchasing Document Information'
+  }]
+  PurchaseDocument;
+    @UI.dataPoint.visualization: #NUMBER
+    TotalNumberofDocuments;
+    @UI.textArrangement: #TEXT_FIRST
+    Priority;
+    @UI.textArrangement: #TEXT_FIRST
+    Status;    
+}

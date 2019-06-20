@@ -1,0 +1,169 @@
+@Metadata.layer: #CORE
+
+@UI: {
+    headerInfo: {
+        description: {
+            value: 'Description',
+            type: #STANDARD
+        },
+        title: {
+            value: 'PurchaseDocument',
+            type: #STANDARD
+        },
+        typeName: 'Purchase Document',
+        typeNamePlural: 'Purchase Documents',
+        imageUrl: 'PurchaseDocumentImageURL'
+    }
+}
+
+annotate view Z_C_PurchaseDocumentLrp with
+{
+
+  @UI.lineItem: [
+  { position: 10, importance: #HIGH }
+  ]
+  PurchaseDocumentImageURL;
+
+  @UI: {
+    lineItem: [{ importance: #HIGH, position: 20 },
+     { type: #FOR_ACTION, dataAction: 'BOPF:APPROVE', label: 'Approve', position: 1  },
+     { type: #FOR_ACTION, dataAction: 'BOPF:CLOSE', label: 'Close', position: 2  }],
+    selectionField: [{ position: 10 }],
+    identification: [
+    { type: #FOR_ACTION, dataAction: 'BOPF:APPROVE', importance: #HIGH, label: 'Approve' },
+    { type: #FOR_ACTION, dataAction: 'BOPF:CLOSE', importance: #HIGH, label: 'Close' }],
+    facet: [
+         {
+           id:         'StatusDataPointFacet',
+           purpose:    #HEADER,
+           type:       #DATAPOINT_REFERENCE,
+           targetQualifier: 'Status'
+          },
+         {
+           id:         'OverallPriceDataPointFacet',
+           purpose:    #HEADER,
+           type:       #DATAPOINT_REFERENCE,
+           targetQualifier: 'OverallPrice'
+          },
+         {
+           id:         'ApprovalRequiredDataPointFacet',
+           purpose:    #HEADER,
+           type:       #DATAPOINT_REFERENCE,
+           targetQualifier: 'IsApprovalRequired'
+          },
+         {
+           id:         'PriorityDataPointFacet',
+           purpose:    #HEADER,
+           type:       #DATAPOINT_REFERENCE,
+           targetQualifier: 'Priority'
+          },
+
+       {
+          label: 'Purchase Document',
+          type: #COLLECTION,
+          id: 'PurchaseDocumentCollectionFacet',
+          purpose: #STANDARD
+        },
+        // Basic Data Section
+          {
+            label: 'Basic Data',
+            type: #FIELDGROUP_REFERENCE,
+            id: 'BasicDataFieldGroupReferenceFacet',
+            parentId: 'PurchaseDocumentCollectionFacet',
+            purpose: #STANDARD,
+            targetQualifier: 'BasicDataFieldGroup'
+          },
+           // Purchasing Data Section
+        {
+          label: 'Purchasing Data',
+          type: #FIELDGROUP_REFERENCE,
+          id: 'PurchasingDocumentFieldGroupReferenceFacet',
+          parentId: 'PurchaseDocumentCollectionFacet',
+          purpose: #STANDARD,
+          targetQualifier: 'PurchasingDocumentFieldGroup'
+        },
+        // Items Section
+        {
+          label: 'Purchase Document Items',
+          type: #LINEITEM_REFERENCE,
+          id: 'PurchaseDocumentItemsLineItemReferenceFacet',
+          purpose: #STANDARD,
+          targetElement: '_PurchaseDocumentItem'
+        }
+     ],
+     fieldGroup: [{ qualifier: 'PurchasingDocumentFieldGroup', position: 10, importance: #HIGH }]
+  }
+  PurchaseDocument;
+  @UI: {
+    fieldGroup: [{ qualifier: 'PurchasingDocumentFieldGroup', position: 20, importance: #HIGH }]
+  }
+  Description;
+  @UI: {
+  lineItem: [{ position: 30, importance: #HIGH }],
+  fieldGroup: [{ qualifier: 'PurchasingDocumentFieldGroup', position: 30, importance: #HIGH  }],
+  dataPoint: { title: 'Prioity' },
+  selectionField: [{ position: 20 }],
+  textArrangement: #TEXT_ONLY
+  }
+  Priority;
+
+  @UI: {
+    lineItem: [{ importance: #HIGH, position: 40, criticality: 'OverallPriceCriticality', criticalityRepresentation: #WITHOUT_ICON, value: 'OverallPrice'  }],
+    dataPoint: { title: 'Overall Price', criticality: 'OverallPriceCriticality' }
+  }
+  OverallPrice;
+
+  @UI.hidden: true
+  OverallPriceCriticality;
+
+  @UI: {
+    lineItem: [{ importance: #MEDIUM, position: 50 }],
+    fieldGroup: [{ qualifier: 'PurchasingDocumentFieldGroup', position: 40, importance: #HIGH  }],
+     dataPoint: { title: 'Status'  },
+     selectionField: [{ position: 30 }],
+     textArrangement: #TEXT_ONLY
+  }
+  Status;
+
+  @UI: {
+  lineItem: [{ importance: #MEDIUM, position: 60, type: #AS_CONTACT, value: '_PurchasingOrganization', label: 'Purchasing Organization' }],
+  fieldGroup: [{ qualifier: 'PurchasingDocumentFieldGroup', position: 40, importance: #HIGH  }],
+  selectionField: [{ position: 40 }]
+  }
+  PurchasingOrganization;
+
+
+  @UI:  {
+    lineItem: [{ importance: #HIGH, position: 70, criticality: 'OverallPriceCriticality', criticalityRepresentation: #WITH_ICON, value: 'IsApprovalRequired' }],
+    textArrangement: #TEXT_ONLY,
+    dataPoint: { title: 'Is Approval Required', criticality: 'OverallPriceCriticality' } }
+  IsApprovalRequired;
+
+
+  @UI: {
+    lineItem: [{ importance: #MEDIUM, position: 80 }],
+    fieldGroup: [{ qualifier: 'BasicDataFieldGroup', position: 10, importance: #HIGH }]   
+    }
+  crea_date_time;
+
+  @UI: {
+    lineItem: [{ importance: #MEDIUM, position:90 }],
+    fieldGroup: [{ qualifier: 'BasicDataFieldGroup', position: 20, importance: #HIGH }]
+    }
+  crea_uname;
+  @UI: {
+  lineItem: [{ importance: #MEDIUM, position: 100 }],
+  fieldGroup: [{ qualifier: 'BasicDataFieldGroup', position: 30, importance: #HIGH }]
+  }
+  lchg_date_time;
+
+  @UI: {
+  lineItem: [{ importance: #MEDIUM, position: 110 }],
+  fieldGroup: [{ qualifier: 'BasicDataFieldGroup', position: 40, importance: #HIGH }]
+  }
+  lchg_uname;
+
+
+
+
+}
